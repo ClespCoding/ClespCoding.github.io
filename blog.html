@@ -1,147 +1,364 @@
-<!DOCTYPE HTML>
-<!--
-    Forty by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>Blog | The North Sea Empire</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
-    <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - North Sea Empire Chronicles</title>
+    <meta name="description" content="Articles and insights on the North Sea Empire, the Hanseatic League, and Northern European history.">
+    <!-- Same styling as homepage for consistency -->
+    <style>
+        :root {
+            --primary-color: #2a3b4c;
+            --secondary-color: #8b9caa;
+            --accent-color: #c39d63;
+            --text-color: #333;
+            --background-color: #f5f5f5;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-headings: 'Georgia', serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hanseatic-ships.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-family: var(--font-headings);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 2rem;
+        }
+        
+        .blog-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-sidebar {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .blog-post {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        .blog-post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .blog-post h2 {
+            font-family: var(--font-headings);
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post .meta {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .blog-post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-section h3 {
+            font-family: var(--font-headings);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-section ul {
+            list-style: none;
+        }
+        
+        .sidebar-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-section ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .sidebar-section ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        .tag:hover {
+            background-color: var(--accent-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .newsletter-form {
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input[type="email"] {
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 3px;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        /* Simple responsive design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <h1>North Sea Empire Chronicles</h1>
+            <p>Articles, Research, and Insights on Northern European Maritime History</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="encyclopedia.html">Encyclopedia</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Wrapper -->
-            <div id="wrapper">
-
-                <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo"><strong>North Sea Empire</strong> <span>Historical Project</span></a>
-                    <nav>
-                        <a href="#menu">Menu</a>
-                    </nav>
-                </header>
-
-                <!-- Menu -->
-                <nav id="menu">
-                    <ul class="links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="timeline.html">Timeline</a></li>
-                        <li><a href="about.html">About</a></li>
+    <main>
+        <div class="blog-container">
+            <div class="blog-content">
+                <article class="blog-post">
+                    <h2>Cnut the Great: How a Danish Prince United the North Sea</h2>
+                    <div class="meta">Posted on March 15, 2025 | By George Astin</div>
+                    <p>In the early 11th century, a remarkable political entity emerged around the North Sea—a maritime empire that united England, Denmark, and Norway under a single ruler. This North Sea Empire, as historians later called it, was the creation of Cnut the Great, a Danish prince who would become one of the most powerful rulers in medieval Europe.</p>
+                    <p>Born around 990 CE to the Danish king Sweyn Forkbeard, Cnut was part of a dynasty that had been harassing the coasts of England for decades. The Anglo-Saxon kingdom, ruled by Æthelred the Unready, had been paying enormous sums (Danegeld) to keep Viking raiders at bay, but this strategy ultimately failed.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </article>
+                
+                <article class="blog-post">
+                    <h2>The Hanseatic League: Medieval Trade Network that Shaped Northern Europe</h2>
+                    <div class="meta">Posted on February 27, 2025 | By George Astin</div>
+                    <p>Long after the North Sea Empire had dissolved, a different kind of power emerged across the Baltic and North Seas—not a political empire, but a commercial one. The Hanseatic League, a network of merchant guilds and market towns, dominated trade in northern Europe from the 13th to the 17th century.</p>
+                    <p>Beginning in the German city of Lübeck, the Hansa (as it was commonly known) expanded to include nearly 200 settlements stretching from London to Novgorod. These cities weren't united by a common government but by shared commercial interests and a desire for mutual protection in the dangerous waters of medieval trade.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </article>
+                
+                <article class="blog-post">
+                    <h2>Anglo-Saxon England: The Foundation of the North Sea World</h2>
+                    <div class="meta">Posted on January 19, 2025 | By George Astin</div>
+                    <p>Before Cnut's conquest, before the Viking raids, the land that would become England was transformed by waves of Germanic migrants. The Anglo-Saxons—composed of Angles, Saxons, Jutes, and Frisians—arrived from continental Europe in the 5th century, establishing kingdoms that would eventually unite into England.</p>
+                    <p>These seafaring peoples maintained connections across the North Sea, trading goods and ideas with their continental cousins. The early medieval North Sea was not a barrier but a highway, connecting rather than dividing the peoples around its shores.</p>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </article>
+            </div>
+            
+            <aside class="blog-sidebar">
+                <div class="sidebar-section">
+                    <h3>About the Author</h3>
+                    <p>History enthusiast and digital entrepreneur exploring the fascinating connections between the medieval North Sea world and modern Northern Europe.</p>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Anglo-Saxon History</a></li>
+                        <li><a href="#">Viking Age</a></li>
+                        <li><a href="#">North Sea Empire</a></li>
+                        <li><a href="#">Hanseatic League</a></li>
+                        <li><a href="#">Maritime Trade</a></li>
+                        <li><a href="#">Medieval Religion</a></li>
                     </ul>
-                    <ul class="actions stacked">
-                        <li><a href="#" class="button primary fit">Explore</a></li>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        <li><a href="#">Cnut the Great: How a Danish Prince United the North Sea</a></li>
+                        <li><a href="#">The Hanseatic League: Medieval Trade Network</a></li>
+                        <li><a href="#">Anglo-Saxon England: Foundation of the North Sea World</a></li>
+                        <li><a href="#">Medieval Maritime Technology</a></li>
+                        <li><a href="#">The Protestant Reformation and Northern Europe</a></li>
                     </ul>
-                </nav>
-
-                <!-- Banner -->
-                <section id="banner" class="style2">
-                    <div class="inner">
-                        <span class="image">
-                            <img src="images/pic07.jpg" alt="" />
-                        </span>
-                        <header class="major">
-                            <h1>Historical Insights & Research</h1>
-                        </header>
-                        <div class="content">
-                            <p>Exploring the rich history of the North Sea Empire, the Hanseatic League,<br />
-                            and the complex relationships between Northern European powers</p>
-                        </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Tags</h3>
+                    <div class="tag-cloud">
+                        <a href="#" class="tag">Vikings</a>
+                        <a href="#" class="tag">Anglo-Saxons</a>
+                        <a href="#" class="tag">Cnut</a>
+                        <a href="#" class="tag">Hansa</a>
+                        <a href="#" class="tag">Trade</a>
+                        <a href="#" class="tag">Medieval</a>
+                        <a href="#" class="tag">North Sea</a>
+                        <a href="#" class="tag">Baltic</a>
+                        <a href="#" class="tag">Denmark</a>
+                        <a href="#" class="tag">England</a>
                     </div>
-                </section>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for updates on new articles and resources about Northern European history.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
 
-                <!-- Main -->
-                    <div id="main">
-
-                        <!-- One -->
-                            <section id="one" class="spotlights">
-                                <section>
-                                    <a href="blog/origins-of-north-sea-empire.html" class="image">
-                                        <img src="images/pic08.jpg" alt="" data-position="center center" />
-                                    </a>
-                                    <div class="content">
-                                        <div class="inner">
-                                            <header class="major">
-                                                <h3>Origins of the North Sea Empire</h3>
-                                            </header>
-                                            <p>The North Sea Empire, also known as the Anglo-Scandinavian Empire, was the thalassocratic domain ruled by Cnut the Great as King of England, Denmark, and Norway in the early 11th century.</p>
-                                            <ul class="actions">
-                                                <li><a href="blog/origins-of-north-sea-empire.html" class="button">Learn more</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-                                <section>
-                                    <a href="blog/hanseatic-league-influence.html" class="image">
-                                        <img src="images/pic09.jpg" alt="" data-position="top center" />
-                                    </a>
-                                    <div class="content">
-                                        <div class="inner">
-                                            <header class="major">
-                                                <h3>The Hanseatic League's Influence on Northern Europe</h3>
-                                            </header>
-                                            <p>The Hanseatic League was a commercial and defensive confederation of merchant guilds and market towns that dominated trade along the coast of Northern Europe from the 13th to the 17th centuries.</p>
-                                            <ul class="actions">
-                                                <li><a href="blog/hanseatic-league-influence.html" class="button">Learn more</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-                            </section>
-
-                    </div>
-
-                <!-- Contact -->
-                    <section id="contact">
-                        <div class="inner">
-                            <section>
-                                <form method="post" action="#">
-                                    <div class="fields">
-                                        <div class="field half">
-                                            <label for="name">Name</label>
-                                            <input type="text" name="name" id="name" />
-                                        </div>
-                                        <div class="field half">
-                                            <label for="email">Email</label>
-                                            <input type="text" name="email" id="email" />
-                                        </div>
-                                        <div class="field">
-                                            <label for="message">Message</label>
-                                            <textarea name="message" id="message" rows="6"></textarea>
-                                        </div>
-                                    </div>
-                                    <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary" /></li>
-                                        <li><input type="reset" value="Clear" /></li>
-                                    </ul>
-                                </form>
-                            </section>
-                            <section class="split">
-                                <section>
-                                    <div class="contact-method">
-                                        <span class="icon solid alt fa-envelope"></span>
-                                        <h3>Email</h3>
-                                        <a href="#">info@northseaempire.com</a>
-                                    </div>
-                                </section>
-                                <section>
-                                    <div class="contact-method">
-                                        <span class="icon solid alt fa-home"></span>
-                                        <h3>Connect</h3>
-                                        <span>Follow our research journey<br />
-                                        through social media and our newsletter</span>
-                                    </div>
-                                </section>
-                            </section>
-                        </div>
-                    </section>
-
-                <!-- Footer -->
-                    <footer id="footer">
-                        <div class="inner">
-                            <ul class="icons">
-                                <li><a href="#" class="icon brands alt fa-t
+    <footer>
+        <p>&copy; 2025 North Sea Empire Project</p>
+        <p>Created by CleƊp Coding</p>
+    </footer>
+</body>
+</html>
