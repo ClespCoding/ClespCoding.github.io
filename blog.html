@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - North Sea Empire Chronicles</title>
-    <meta name="description" content="Articles and insights on the North Sea Empire, the Hanseatic League, and Northern European history.">
-    <!-- Same styling as homepage for consistency -->
+    <title>North Sea Empire | Journal</title>
+    <meta name="description" content="Exploring the North Sea Empire through modern historical analysis">
+    <!-- Modern minimalist styling -->
     <style>
         :root {
-            --primary-color: #2a3b4c;
-            --secondary-color: #8b9caa;
-            --accent-color: #c39d63;
-            --text-color: #333;
-            --background-color: #f5f5f5;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --font-headings: 'Georgia', serif;
+            --primary-color: #1a2639;
+            --secondary-color: #3e4a61;
+            --accent-color: #d4af37;
+            --text-color: #2c2c2c;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-headings: 'Playfair Display', Georgia, serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         * {
@@ -28,337 +30,783 @@
             color: var(--text-color);
             background-color: var(--background-color);
             line-height: 1.6;
+            font-size: 1rem;
+            overflow-x: hidden;
         }
         
+        /* Modern header with gradient overlay */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
+            position: relative;
+            height: 70vh;
+            min-height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hanseatic-ships.jpg');
+        .header-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(26, 38, 57, 0.9), rgba(26, 38, 57, 0.7)), url('images/north-sea-waves.jpg');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 6rem 0;
+            z-index: -1;
+        }
+        
+        .header-content {
             text-align: center;
-        }
-        
-        .hero h1 {
-            font-family: var(--font-headings);
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
+            color: white;
             max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+        
+        .site-title {
+            font-family: var(--font-headings);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        .site-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Modern navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 38, 57, 0.95);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-scrolled {
+            padding: 0.5rem 2rem;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
-        nav {
-            background-color: var(--primary-color);
-            padding: 1rem;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin: 0 1rem;
-        }
-        
-        nav ul li a {
+        .logo {
             color: white;
+            font-family: var(--font-headings);
+            font-size: 1.5rem;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-weight: 700;
         }
         
-        nav ul li a:hover {
+        .logo span {
             color: var(--accent-color);
         }
         
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+        
+        /* Main content area */
         main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
         }
         
         .blog-container {
             display: grid;
             grid-template-columns: 7fr 3fr;
-            gap: 2rem;
+            gap: 3rem;
         }
         
+        /* Modern blog post cards */
         .blog-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .blog-sidebar {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            height: fit-content;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
         
         .blog-post {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--secondary-color);
+            background-color: var(--card-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
         
-        .blog-post:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .blog-post h2 {
-            font-family: var(--font-headings);
-            font-size: 2rem;
-            color: var(--primary-color);
+        .post-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .post-content {
+            padding: 2rem;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
             margin-bottom: 1rem;
-        }
-        
-        .blog-post .meta {
+            font-size: 0.9rem;
             color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-style: italic;
         }
         
-        .blog-post img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 1rem 0;
+        .post-date {
+            position: relative;
+            padding-right: 1rem;
+            margin-right: 1rem;
+        }
+        
+        .post-date::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+        }
+        
+        .post-title {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+        }
+        
+        .post-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            line-height: 1.7;
         }
         
         .read-more {
             display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
+            background-color: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
             text-decoration: none;
-            margin-top: 1rem;
-            transition: background-color 0.3s ease;
+            padding: 0.6rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .read-more::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
         }
         
         .read-more:hover {
-            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .read-more:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Modern sidebar */
+        .blog-sidebar {
+            position: relative;
+        }
+        
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
         }
         
         .sidebar-section {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
         
-        .sidebar-section h3 {
+        .sidebar-title {
             font-family: var(--font-headings);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .sidebar-section ul {
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .categories-list, .recent-posts-list {
             list-style: none;
         }
         
-        .sidebar-section ul li {
-            margin-bottom: 0.5rem;
+        .categories-list li, .recent-posts-list li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        .sidebar-section ul li a {
-            color: var(--text-color);
+        .categories-list li:last-child, .recent-posts-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .categories-list a, .recent-posts-list a {
+            color: var(--secondary-color);
             text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
         }
         
-        .sidebar-section ul li a:hover {
-            color: var(--accent-color);
+        .categories-list a:hover, .recent-posts-list a:hover {
+            color: var(--primary-color);
         }
         
-        .tag-cloud {
+        .category-count {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 0.1rem 0.6rem;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+        
+        .tags-cloud {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
         
         .tag {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 3px;
-            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--secondary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             text-decoration: none;
+            transition: var(--transition);
         }
         
         .tag:hover {
             background-color: var(--accent-color);
-        }
-        
-        footer {
-            background-color: var(--primary-color);
             color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
         }
         
         .newsletter-form {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         
-        .newsletter-form input[type="email"] {
-            padding: 0.5rem;
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-control {
             width: 100%;
-            margin-bottom: 0.5rem;
-            border: 1px solid var(--secondary-color);
-            border-radius: 3px;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: var(--transition);
         }
         
-        .newsletter-form button {
-            background-color: var(--accent-color);
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
+            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-main);
+            font-size: 1rem;
             cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
         }
         
-        /* Simple responsive design */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+        
+        /* Modern footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-headings);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-description {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.8;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
             .blog-container {
                 grid-template-columns: 1fr;
             }
+            
+            .site-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(26, 38, 57, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                clip-path: circle(0px at top right);
+                -webkit-clip-path: circle(0px at top right);
+                transition: var(--transition);
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            }
+            
+            .nav-links.active {
+                clip-path: circle(1000px at top right);
+                -webkit-clip-path: circle(1000px at top right);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .site-title {
+                font-size: 2.5rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .blog-post {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .blog-post:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .blog-post:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .blog-post:nth-child(3) {
+            animation-delay: 0.5s;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="hero">
-            <h1>North Sea Empire Chronicles</h1>
-            <p>Articles, Research, and Insights on Northern European Maritime History</p>
-        </div>
-        <nav>
-            <ul>
+    <!-- Fixed Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">North<span>Sea</span></a>
+            <div class="menu-toggle" id="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="timeline.html">Timeline</a></li>
                 <li><a href="encyclopedia.html">Encyclopedia</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blog.html" class="active">Journal</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+
+    <!-- Header with background image -->
+    <header>
+        <div class="header-background"></div>
+        <div class="header-content">
+            <h1 class="site-title">Maritime Chronicles</h1>
+            <p class="site-subtitle">Exploring the rich tapestry of Northern European history from the Anglo-Saxons through the Hanseatic League and beyond</p>
+        </div>
     </header>
 
+    <!-- Main Content Area -->
     <main>
         <div class="blog-container">
+            <!-- Blog Posts Column -->
             <div class="blog-content">
+                <!-- Blog Post 1 -->
                 <article class="blog-post">
-                    <h2>Cnut the Great: How a Danish Prince United the North Sea</h2>
-                    <div class="meta">Posted on March 15, 2025 | By George Astin</div>
-                    <p>In the early 11th century, a remarkable political entity emerged around the North Sea—a maritime empire that united England, Denmark, and Norway under a single ruler. This North Sea Empire, as historians later called it, was the creation of Cnut the Great, a Danish prince who would become one of the most powerful rulers in medieval Europe.</p>
-                    <p>Born around 990 CE to the Danish king Sweyn Forkbeard, Cnut was part of a dynasty that had been harassing the coasts of England for decades. The Anglo-Saxon kingdom, ruled by Æthelred the Unready, had been paying enormous sums (Danegeld) to keep Viking raiders at bay, but this strategy ultimately failed.</p>
-                    <a href="#" class="read-more">Continue Reading</a>
+                    <img src="images/cnut-great.jpg" alt="Cnut the Great" class="post-image">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">March 15, 2025</span>
+                            <span class="post-author">George Astin</span>
+                        </div>
+                        <h2 class="post-title">Cnut the Great: The Danish King Who United the North Sea</h2>
+                        <p class="post-excerpt">In the early 11th century, a remarkable political entity emerged around the North Sea—a maritime empire that united England, Denmark, and Norway under a single ruler. This North Sea Empire, as historians later called it, was the creation of Cnut the Great, a Danish prince who would become one of the most powerful rulers in medieval Europe.</p>
+                        <a href="#" class="read-more">Continue Reading</a>
+                    </div>
                 </article>
                 
+                <!-- Blog Post 2 -->
                 <article class="blog-post">
-                    <h2>The Hanseatic League: Medieval Trade Network that Shaped Northern Europe</h2>
-                    <div class="meta">Posted on February 27, 2025 | By George Astin</div>
-                    <p>Long after the North Sea Empire had dissolved, a different kind of power emerged across the Baltic and North Seas—not a political empire, but a commercial one. The Hanseatic League, a network of merchant guilds and market towns, dominated trade in northern Europe from the 13th to the 17th century.</p>
-                    <p>Beginning in the German city of Lübeck, the Hansa (as it was commonly known) expanded to include nearly 200 settlements stretching from London to Novgorod. These cities weren't united by a common government but by shared commercial interests and a desire for mutual protection in the dangerous waters of medieval trade.</p>
-                    <a href="#" class="read-more">Continue Reading</a>
+                    <img src="images/hanseatic-ship.jpg" alt="Hanseatic Cog Ship" class="post-image">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">February 27, 2025</span>
+                            <span class="post-author">George Astin</span>
+                        </div>
+                        <h2 class="post-title">The Hanseatic League: Medieval Trade Network that Shaped Northern Europe</h2>
+                        <p class="post-excerpt">Long after the North Sea Empire had dissolved, a different kind of power emerged across the Baltic and North Seas—not a political empire, but a commercial one. The Hanseatic League, a network of merchant guilds and market towns, dominated trade in northern Europe from the 13th to the 17th century, creating lasting connections across cultural boundaries.</p>
+                        <a href="#" class="read-more">Continue Reading</a>
+                    </div>
                 </article>
                 
+                <!-- Blog Post 3 -->
                 <article class="blog-post">
-                    <h2>Anglo-Saxon England: The Foundation of the North Sea World</h2>
-                    <div class="meta">Posted on January 19, 2025 | By George Astin</div>
-                    <p>Before Cnut's conquest, before the Viking raids, the land that would become England was transformed by waves of Germanic migrants. The Anglo-Saxons—composed of Angles, Saxons, Jutes, and Frisians—arrived from continental Europe in the 5th century, establishing kingdoms that would eventually unite into England.</p>
-                    <p>These seafaring peoples maintained connections across the North Sea, trading goods and ideas with their continental cousins. The early medieval North Sea was not a barrier but a highway, connecting rather than dividing the peoples around its shores.</p>
-                    <a href="#" class="read-more">Continue Reading</a>
+                    <img src="images/anglo-saxon.jpg" alt="Anglo-Saxon Artifacts" class="post-image">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">January 19, 2025</span>
+                            <span class="post-author">George Astin</span>
+                        </div>
+                        <h2 class="post-title">Anglo-Saxon England: The Foundation of the North Sea World</h2>
+                        <p class="post-excerpt">Before Cnut's conquest, before the Viking raids, the land that would become England was transformed by waves of Germanic migrants. The Anglo-Saxons—composed of Angles, Saxons, Jutes, and Frisians—arrived from continental Europe in the 5th century, establishing kingdoms that would eventually unite into England and maintain connections across the North Sea.</p>
+                        <a href="#" class="read-more">Continue Reading</a>
+                    </div>
                 </article>
             </div>
             
-            <aside class="blog-sidebar">
-                <div class="sidebar-section">
-                    <h3>About the Author</h3>
-                    <p>History enthusiast and digital entrepreneur exploring the fascinating connections between the medieval North Sea world and modern Northern Europe.</p>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li><a href="#">Anglo-Saxon History</a></li>
-                        <li><a href="#">Viking Age</a></li>
-                        <li><a href="#">North Sea Empire</a></li>
-                        <li><a href="#">Hanseatic League</a></li>
-                        <li><a href="#">Maritime Trade</a></li>
-                        <li><a href="#">Medieval Religion</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3>Recent Posts</h3>
-                    <ul>
-                        <li><a href="#">Cnut the Great: How a Danish Prince United the North Sea</a></li>
-                        <li><a href="#">The Hanseatic League: Medieval Trade Network</a></li>
-                        <li><a href="#">Anglo-Saxon England: Foundation of the North Sea World</a></li>
-                        <li><a href="#">Medieval Maritime Technology</a></li>
-                        <li><a href="#">The Protestant Reformation and Northern Europe</a></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-section">
-                    <h3>Tags</h3>
-                    <div class="tag-cloud">
-                        <a href="#" class="tag">Vikings</a>
-                        <a href="#" class="tag">Anglo-Saxons</a>
-                        <a href="#" class="tag">Cnut</a>
-                        <a href="#" class="tag">Hansa</a>
-                        <a href="#" class="tag">Trade</a>
-                        <a href="#" class="tag">Medieval</a>
-                        <a href="#" class="tag">North Sea</a>
-                        <a href="#" class="tag">Baltic</a>
-                        <a href="#" class="tag">Denmark</a>
-                        <a href="#" class="tag">England</a>
+            <!-- Sidebar Column -->
+            <div class="blog-sidebar">
+                <div class="sidebar-sticky">
+                    <!-- About Widget -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">About</h3>
+                        <p>A digital humanities project exploring the rich historical connections of Northern Europe through innovative storytelling and modern web technologies.</p>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">Anglo-Saxon History <span class="category-count">5</span></a></li>
+                            <li><a href="#">Viking Age <span class="category-count">7</span></a></li>
+                            <li><a href="#">North Sea Empire <span class="category-count">4</span></a></li>
+                            <li><a href="#">Hanseatic League <span class="category-count">6</span></a></li>
+                            <li><a href="#">Maritime Trade <span class="category-count">8</span></a></li>
+                            <li><a href="#">Medieval Religion <span class="category-count">3</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Recent Posts</h3>
+                        <ul class="recent-posts-list">
+                            <li><a href="#">Cnut the Great: The Danish King Who United the North Sea</a></li>
+                            <li><a href="#">The Hanseatic League: Medieval Trade Network</a></li>
+                            <li><a href="#">Anglo-Saxon England: Foundation of the North Sea World</a></li>
+                            <li><a href="#">Medieval Maritime Technology and Navigation</a></li>
+                            <li><a href="#">The Protestant Reformation and Northern Europe</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Tags</h3>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag">Vikings</a>
+                            <a href="#" class="tag">Anglo-Saxons</a>
+                            <a href="#" class="tag">Cnut</a>
+                            <a href="#" class="tag">Hansa</a>
+                            <a href="#" class="tag">Trade</a>
+                            <a href="#" class="tag">Medieval</a>
+                            <a href="#" class="tag">North Sea</a>
+                            <a href="#" class="tag">Baltic</a>
+                            <a href="#" class="tag">Denmark</a>
+                            <a href="#" class="tag">England</a>
+                            <a href="#" class="tag">Norway</a>
+                            <a href="#" class="tag">Germany</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Newsletter</h3>
+                        <p>Subscribe for updates on new articles and resources about Northern European history.</p>
+                        <form class="newsletter-form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your email address" required>
+                            </div>
+                            <button type="submit" class="btn">Subscribe</button>
+                        </form>
                     </div>
                 </div>
-                
-                <div class="sidebar-section">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe for updates on new articles and resources about Northern European history.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </aside>
+            </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 North Sea Empire Project</p>
-        <p>Created by CleƊp Coding</p>
+        <div class="footer-container">
+            <!-- Footer About -->
+            <div class="footer-about">
+                <div class="footer-logo">North<span>Sea</span></div>
+                <p class="footer-description">Exploring the rich maritime history of Northern Europe through digital storytelling and modern technology.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">X</a>
+                    <a href="#" class="social-link">In</a>
+                    <a href="#" class="social-link">Ig</a>
+                    <a href="#" class="social-link">Gh</a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-links-container">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="timeline.html">Timeline</a></li>
+                    <li><a href="encyclopedia.html">Encyclopedia</a></li>
+                    <li><a href="blog.html">Journal</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div class="footer-links-container">
+                <h3 class="footer-title">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Historical Maps</a></li>
+                    <li><a href="#">Primary Sources</a></li>
+                    <li><a href="#">Recommended Books</a></li>
+                    <li><a href="#">Academic Papers</a></li>
+                    <li><a href="#">Educational Tools</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact -->
+            <div class="footer-contact">
+                <h3 class="footer-title">Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:contact@northsea-empire.com">contact@northsea-empire.com</a></li>
+                    <li><a href="#">Submit a Correction</a></li>
+                    <li><a href="#">Collaboration Inquiries</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 North Sea Empire Project. All rights reserved.</p>
+            <p>Created by CleƊp Coding</p>
+        </div>
     </footer>
+
+    <!-- JavaScript for dynamic elements -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.toggle('active'));
+        });
+    </script>
 </body>
 </html>
